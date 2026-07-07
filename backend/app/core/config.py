@@ -6,15 +6,10 @@ from dotenv import load_dotenv
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ENV_FILE_PATH = os.path.join(BACKEND_DIR, ".env")
 
-# 2. EXPLICIT FILE CHECK: This will stop the script and tell you exactly what is wrong
-if not os.path.exists(ENV_FILE_PATH):
-    raise FileNotFoundError(
-        f"\n\n---> CRITICAL ERROR: The .env file was not found at: {ENV_FILE_PATH} <---\n"
-        "Please ensure your file is located exactly there and is named '.env' (not '.env.txt').\n"
-    )
-
-# 3. Force load the variables into the system
-load_dotenv(ENV_FILE_PATH)
+# 2. FIXED: Try to load the .env file if it exists (for local development). 
+# If it doesn't exist (like on Render), just skip silently!
+if os.path.exists(ENV_FILE_PATH):
+    load_dotenv(ENV_FILE_PATH)
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "GFPMS API"
