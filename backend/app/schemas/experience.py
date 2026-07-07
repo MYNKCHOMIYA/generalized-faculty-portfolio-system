@@ -2,6 +2,7 @@ from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from datetime import date
 
+
 class ExperienceBase(BaseModel):
     job_title: str
     organization: str
@@ -10,8 +11,10 @@ class ExperienceBase(BaseModel):
     is_current: bool = False
     description: Optional[str] = None
 
+
 class ExperienceCreate(ExperienceBase):
     pass
+
 
 class ExperienceResponse(ExperienceBase):
     id: str

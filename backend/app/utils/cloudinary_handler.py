@@ -7,8 +7,9 @@ cloudinary.config(
     cloud_name=settings.CLOUDINARY_CLOUD_NAME,
     api_key=settings.CLOUDINARY_API_KEY,
     api_secret=settings.CLOUDINARY_API_SECRET,
-    secure=True
+    secure=True,
 )
+
 
 def upload_image(file_obj, folder_name: str = "gfpms/profiles"):
     """
@@ -17,9 +18,7 @@ def upload_image(file_obj, folder_name: str = "gfpms/profiles"):
     try:
         # We pass the raw file byte stream directly to Cloudinary
         response = cloudinary.uploader.upload(
-            file_obj,
-            folder=folder_name,
-            resource_type="image"
+            file_obj, folder=folder_name, resource_type="image"
         )
         return response.get("secure_url")
     except Exception as e:

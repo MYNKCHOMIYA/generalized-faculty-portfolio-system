@@ -1,11 +1,13 @@
 from pydantic import BaseModel, EmailStr, ConfigDict
 from typing import Optional
 
+
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
-    role: str = "faculty" # Default to faculty, can be overridden by admin
+    role: str = "faculty"  # Default to faculty, can be overridden by admin
     department_id: Optional[str] = None
+
 
 class UserResponse(BaseModel):
     id: str

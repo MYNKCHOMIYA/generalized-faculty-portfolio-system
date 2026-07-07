@@ -9,6 +9,7 @@ engine = create_engine(settings.DATABASE_URL, pool_pre_ping=True)
 # Create a configured "Session" class
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+
 # Dependency to get the database session for each request
 def get_db():
     db = SessionLocal()

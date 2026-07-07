@@ -2,6 +2,7 @@ from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from datetime import date
 
+
 class ProjectBase(BaseModel):
     title: str
     funding_agency: Optional[str] = None
@@ -11,8 +12,10 @@ class ProjectBase(BaseModel):
     end_date: Optional[date] = None
     description: Optional[str] = None
 
+
 class ProjectCreate(ProjectBase):
     pass
+
 
 class ProjectResponse(ProjectBase):
     id: str

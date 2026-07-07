@@ -2,6 +2,7 @@ from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from datetime import date
 
+
 class EducationBase(BaseModel):
     degree: str
     institution: str
@@ -10,8 +11,10 @@ class EducationBase(BaseModel):
     end_date: Optional[date] = None
     grade: Optional[str] = None
 
+
 class EducationCreate(EducationBase):
     pass
+
 
 class EducationResponse(EducationBase):
     id: str

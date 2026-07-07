@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
 
+
 class PublicationBase(BaseModel):
     title: str = Field(..., min_length=1, description="Title of the publication")
     publication_type: str = Field(..., description="Journal, Conference, Book, etc.")
@@ -9,8 +10,10 @@ class PublicationBase(BaseModel):
     doi: Optional[str] = None
     citations: int = 0
 
+
 class PublicationCreate(PublicationBase):
     pass
+
 
 class PublicationUpdate(BaseModel):
     title: Optional[str] = None
@@ -19,6 +22,7 @@ class PublicationUpdate(BaseModel):
     publication_year: Optional[int] = None
     doi: Optional[str] = None
     citations: Optional[int] = None
+
 
 class PublicationResponse(PublicationBase):
     id: str
