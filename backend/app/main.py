@@ -6,7 +6,6 @@ import app.models
 
 from app.api.auth import router as auth_router
 from app.core.config import settings
-from app.api.auth import router as auth_router
 from app.api.faculty_profile import router as profile_router
 from app.api.publication import router as publication_router
 from app.api.education import router as education_router

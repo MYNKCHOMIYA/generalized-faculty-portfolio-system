@@ -8,7 +8,6 @@ from app.models.faculty_profile import FacultyProfile
 from app.models.publication import Publication
 from app.schemas.publication import (
     PublicationCreate,
-    PublicationUpdate,
     PublicationResponse,
 )
 

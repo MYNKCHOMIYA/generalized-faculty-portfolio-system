@@ -1,6 +1,6 @@
 from typing import Any
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
+
 
 from app.api.deps import SessionDep, get_current_active_user
 from app.models.user import User

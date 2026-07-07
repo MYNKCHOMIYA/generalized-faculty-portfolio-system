@@ -1,5 +1,4 @@
 from fpdf import FPDF, XPos, YPos
-from io import BytesIO
 
 
 class FacultyCV(FPDF):
