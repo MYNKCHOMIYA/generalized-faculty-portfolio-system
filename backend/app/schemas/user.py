@@ -17,11 +17,13 @@ class UserCreate(BaseModel):
     department_id: Optional[str] = None
 
     # 2. Intercept and validate the email domain before it hits the database
-    @field_validator('email')
+    @field_validator("email")
     @classmethod
     def validate_skit_domain(cls, value: str):
-        if not value.endswith('@skit.ac.in'):
-            raise ValueError('Unauthorized domain. Only @skit.ac.in emails are permitted.')
+        if not value.endswith("@skit.ac.in"):
+            raise ValueError(
+                "Unauthorized domain. Only @skit.ac.in emails are permitted."
+            )
         return value
 
 
