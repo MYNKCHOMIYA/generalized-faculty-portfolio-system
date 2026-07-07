@@ -32,6 +32,7 @@ jobs:
     - name: Run Pytest
       env:
         # We inject fake secrets here so Pydantic doesn't crash while booting up the test environment!
+        PYTHONPATH: ./backend
         POSTGRES_USER: ci_test
         POSTGRES_PASSWORD: ci_test
         POSTGRES_SERVER: localhost
