@@ -15,6 +15,7 @@ from app.api.achievement import router as achievement_router
 from app.api.export import router as export_router
 from app.api import patent, certification
 from app.api import patent, certification, teaching, student_guidance
+from app.api import patent, certification, teaching, student_guidance, workshop
 
 app = FastAPI(
     title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"
@@ -67,6 +68,7 @@ app.include_router(teaching.router, prefix="/api/teaching", tags=["Teaching"])
 app.include_router(
     student_guidance.router, prefix="/api/student-guidance", tags=["Student Guidance"]
 )
+app.include_router(workshop.router, prefix="/api/workshops", tags=["Workshops & FDP"])
 
 
 @app.get("/")
