@@ -9,3 +9,5 @@ from app.models.project import Project
 from app.models.achievement import Achievement
 from app.models.patent import Patent
 from app.models.certification import Certification
+from app.models.teaching import Teaching
+from app.models.student_guidance import StudentGuidance
