@@ -12,3 +12,5 @@ from app.models.certification import Certification
 from app.models.teaching import Teaching
 from app.models.student_guidance import StudentGuidance
 from app.models.workshop import Workshop
+from app.models.activity import ActivityLog
+from app.models.notification import Notification
