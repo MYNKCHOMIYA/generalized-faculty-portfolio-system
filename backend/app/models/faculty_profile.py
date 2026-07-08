@@ -47,3 +47,15 @@ class FacultyProfile(Base):
     certifications = relationship(
         "Certification", back_populates="faculty_profile", cascade="all, delete-orphan"
     )
+
+    teaching = relationship(
+        "Teaching", back_populates="faculty_profile", cascade="all, delete-orphan"
+    )
+    student_guidance = relationship(
+        "StudentGuidance",
+        back_populates="faculty_profile",
+        cascade="all, delete-orphan",
+    )
+    workshops = relationship(
+        "Workshop", back_populates="faculty_profile", cascade="all, delete-orphan"
+    )
