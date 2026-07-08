@@ -13,6 +13,7 @@ from app.api.experience import router as experience_router
 from app.api.project import router as project_router
 from app.api.achievement import router as achievement_router
 from app.api.export import router as export_router
+from app.api import patent, certification
 
 app = FastAPI(
     title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"
@@ -56,6 +57,10 @@ app.include_router(
 )
 app.include_router(
     export_router, prefix=f"{settings.API_V1_STR}/export", tags=["Data Export"]
+)
+app.include_router(patent.router, prefix="/api/patents", tags=["Patents"])
+app.include_router(
+    certification.router, prefix="/api/certifications", tags=["Certifications"]
 )
 
 
