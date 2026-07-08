@@ -9,6 +9,12 @@ class PublicationBase(BaseModel):
     publication_year: int
     doi: Optional[str] = None
     citations: int = 0
+    # Add to PublicationBase (and make sure they are in PublicationUpdate as Optional)
+    authors: Optional[str] = None
+    journal: Optional[str] = None
+    issn: Optional[str] = None
+    indexed_in: Optional[str] = None
+    pdf_url: Optional[str] = None
 
 
 class PublicationCreate(PublicationBase):
@@ -22,6 +28,12 @@ class PublicationUpdate(BaseModel):
     publication_year: Optional[int] = None
     doi: Optional[str] = None
     citations: Optional[int] = None
+    # Add to PublicationBase (and make sure they are in PublicationUpdate as Optional)
+    authors: Optional[str] = None
+    journal: Optional[str] = None
+    issn: Optional[str] = None
+    indexed_in: Optional[str] = None
+    pdf_url: Optional[str] = None
 
 
 class PublicationResponse(PublicationBase):

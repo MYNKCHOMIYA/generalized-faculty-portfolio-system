@@ -10,6 +10,7 @@ class ExperienceBase(BaseModel):
     end_date: Optional[date] = None
     is_current: bool = False
     description: Optional[str] = None
+    employment_type: Optional[str] = None
 
 
 class ExperienceCreate(ExperienceBase):

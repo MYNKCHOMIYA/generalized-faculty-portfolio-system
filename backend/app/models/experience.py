@@ -22,5 +22,7 @@ class Experience(Base):
     is_current: Mapped[bool] = mapped_column(Boolean, default=False)
     description: Mapped[str | None] = mapped_column(Text)
 
+    employment_type: Mapped[str | None] = mapped_column(String)
+
     # Relationships
     faculty = relationship("FacultyProfile", back_populates="experience")

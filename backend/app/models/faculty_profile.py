@@ -24,6 +24,16 @@ class FacultyProfile(Base):
     bio: Mapped[str | None] = mapped_column(Text)
     profile_image_url: Mapped[str | None] = mapped_column(String)
 
+    # --- NEW FIELDS FROM AUDIT ---
+    employee_id: Mapped[str | None] = mapped_column(String, unique=True, index=True)
+    website: Mapped[str | None] = mapped_column(String)
+    linkedin: Mapped[str | None] = mapped_column(String)
+    google_scholar: Mapped[str | None] = mapped_column(String)
+    orcid: Mapped[str | None] = mapped_column(String)
+    office_location: Mapped[str | None] = mapped_column(String)
+    specialization: Mapped[str | None] = mapped_column(String)
+    areas_of_interest: Mapped[str | None] = mapped_column(String)
+
     # --- Relationships ---
     user = relationship("User", back_populates="profile")
 
@@ -49,7 +59,6 @@ class FacultyProfile(Base):
     certifications = relationship(
         "Certification", back_populates="faculty_profile", cascade="all, delete-orphan"
     )
-
     teaching = relationship(
         "Teaching", back_populates="faculty_profile", cascade="all, delete-orphan"
     )
