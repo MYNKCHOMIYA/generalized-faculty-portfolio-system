@@ -24,6 +24,14 @@ class Publication(Base):
     publication_year: Mapped[int] = mapped_column(Integer, nullable=False)
     doi: Mapped[str | None] = mapped_column(String)
     citations: Mapped[int] = mapped_column(Integer, default=0)
+    # --- NEW FIELDS FROM AUDIT ---
+    authors: Mapped[str | None] = mapped_column(String)  # Comma-separated authors
+    journal: Mapped[str | None] = mapped_column(String)
+    issn: Mapped[str | None] = mapped_column(String)
+    indexed_in: Mapped[str | None] = mapped_column(
+        String
+    )  # e.g., Scopus, Web of Science
+    pdf_url: Mapped[str | None] = mapped_column(String)
 
     # Relationships
     faculty = relationship("FacultyProfile", back_populates="publications")

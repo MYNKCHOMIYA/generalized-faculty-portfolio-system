@@ -18,6 +18,15 @@ class FacultyProfileBase(BaseModel):
     bio: Optional[str] = None
     profile_image_url: Optional[str] = None
 
+    employee_id: Optional[str] = None
+    website: Optional[str] = None  # Could use HttpUrl if you want strict validation
+    linkedin: Optional[str] = None
+    google_scholar: Optional[str] = None
+    orcid: Optional[str] = None
+    office_location: Optional[str] = None
+    specialization: Optional[str] = None
+    areas_of_interest: Optional[str] = None
+
 
 # 2. Properties to receive on Profile Creation
 # Notice we do NOT include user_id here. We will extract user_id securely
@@ -32,9 +41,21 @@ class FacultyProfileUpdate(BaseModel):
     first_name: Optional[str] = Field(default=None, min_length=1, max_length=50)
     last_name: Optional[str] = Field(default=None, min_length=1, max_length=50)
     designation: Optional[str] = Field(default=None, min_length=2, max_length=100)
+    department: Optional[str] = None
+    skills: Optional[str] = None
     phone_number: Optional[str] = Field(default=None, max_length=20)
     bio: Optional[str] = None
     profile_image_url: Optional[str] = None
+
+    # --- NEW AUDIT FIELDS ---
+    employee_id: Optional[str] = None
+    website: Optional[str] = None
+    linkedin: Optional[str] = None
+    google_scholar: Optional[str] = None
+    orcid: Optional[str] = None
+    office_location: Optional[str] = None
+    specialization: Optional[str] = None
+    areas_of_interest: Optional[str] = None
 
 
 # 4. Properties to return to the React Frontend

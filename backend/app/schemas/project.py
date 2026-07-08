@@ -11,6 +11,9 @@ class ProjectBase(BaseModel):
     start_date: Optional[date] = None
     end_date: Optional[date] = None
     description: Optional[str] = None
+    # Add these inside your Pydantic Base schema
+    team_members: Optional[str] = None
+    project_documents_url: Optional[str] = None
 
 
 class ProjectCreate(ProjectBase):

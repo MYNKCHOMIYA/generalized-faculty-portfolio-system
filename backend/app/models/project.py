@@ -25,5 +25,8 @@ class Project(Base):
     end_date: Mapped[date | None] = mapped_column(Date)
     description: Mapped[str | None] = mapped_column(Text)
 
+    team_members: Mapped[str | None] = mapped_column(String)
+    project_documents_url: Mapped[str | None] = mapped_column(String)
+
     # Relationships
     faculty = relationship("FacultyProfile", back_populates="projects")
