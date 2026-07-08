@@ -40,3 +40,10 @@ class FacultyProfile(Base):
     achievements = relationship(
         "Achievement", back_populates="faculty", cascade="all, delete-orphan"
     )
+    # New Sprint 1 Relationships
+    patents = relationship(
+        "Patent", back_populates="faculty_profile", cascade="all, delete-orphan"
+    )
+    certifications = relationship(
+        "Certification", back_populates="faculty_profile", cascade="all, delete-orphan"
+    )
