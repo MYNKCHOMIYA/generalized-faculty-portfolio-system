@@ -4,12 +4,12 @@ from pydantic import BaseModel
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-
+from collections import Counter
 from app.api.deps import get_db, get_current_active_user
 from app.models.user import User
 from app.models.faculty_profile import FacultyProfile
 from app.models.publication import Publication
-from app.schemas.analytics import DashboardAnalytics, DepartmentStat
+from app.schemas.analytics import DashboardAnalytics, DepartmentStat, SkillCount
 
 router = APIRouter()
 
@@ -91,3 +91,48 @@ def get_publication_trends(
     final_df["count"] = final_df["count"].astype(int)
 
     return final_df.to_dict(orient="records")
+
+
+@router.get("/skills/top", response_model=List[SkillCount])
+def get_top_skills(
+    limit: int = 10,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user),
+):
+    """
+    Extracts, cleans, and ranks the most in-demand skills across the college.
+    """
+    # 1. Fetch only the rows where the skills column actually has text
+    profiles = (
+        db.query(FacultyProfile.skills).filter(FacultyProfile.skills.isnot(None)).all()
+    )
+
+    if not profiles:
+        return []
+
+    all_skills = []
+
+    # 2. The Cleaning Loop
+    for (skills_str,) in profiles:
+        # Skip empty strings
+        if not skills_str.strip():
+            continue
+
+        # Split the string by commas to get individual skills
+        raw_skills = skills_str.split(",")
+
+        for skill in raw_skills:
+            # Strip whitespace and convert to Title Case (e.g., " python " -> "Python")
+            cleaned_skill = skill.strip().title()
+
+            if cleaned_skill:  # Make sure it's not empty after stripping
+                all_skills.append(cleaned_skill)
+
+    # 3. Tally them up using Python's high-performance Counter
+    skill_counts = Counter(all_skills)
+
+    # 4. Grab the top N skills (defaults to top 10)
+    top_skills = skill_counts.most_common(limit)
+
+    # 5. Format for the FastAPI response
+    return [{"skill": name, "count": count} for name, count in top_skills]

@@ -12,3 +12,8 @@ class DashboardAnalytics(BaseModel):
     total_faculty: int
     total_publications: int
     department_stats: List[DepartmentStat]
+
+
+class SkillCount(BaseModel):
+    skill: str
+    count: int
