@@ -18,6 +18,8 @@ class FacultyProfile(Base):
     first_name: Mapped[str] = mapped_column(String, nullable=False)
     last_name: Mapped[str] = mapped_column(String, nullable=False)
     designation: Mapped[str] = mapped_column(String, nullable=False)
+    department: Mapped[str | None] = mapped_column(String)
+    skills: Mapped[str | None] = mapped_column(String)
     phone_number: Mapped[str | None] = mapped_column(String)
     bio: Mapped[str | None] = mapped_column(Text)
     profile_image_url: Mapped[str | None] = mapped_column(String)

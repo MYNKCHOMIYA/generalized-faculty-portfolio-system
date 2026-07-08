@@ -17,7 +17,15 @@ from app.api import patent, certification
 from app.api import patent, certification, teaching, student_guidance
 from app.api import patent, certification, teaching, student_guidance, workshop
 from app.api import upload
-
+from app.api import (
+    patent,
+    certification,
+    teaching,
+    student_guidance,
+    workshop,
+    upload,
+    search,
+)
 import cloudinary
 import cloudinary.uploader
 import os
@@ -86,6 +94,8 @@ app.include_router(
 app.include_router(workshop.router, prefix="/api/workshops", tags=["Workshops & FDP"])
 
 app.include_router(upload.router, prefix="/api/upload", tags=["File Uploads"])
+
+app.include_router(search.router, prefix="/api/search", tags=["Search & Filter"])
 
 
 @app.get("/")
