@@ -16,6 +16,21 @@ from app.api.export import router as export_router
 from app.api import patent, certification
 from app.api import patent, certification, teaching, student_guidance
 from app.api import patent, certification, teaching, student_guidance, workshop
+from app.api import upload
+
+import cloudinary
+import cloudinary.uploader
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True,
+)
 
 app = FastAPI(
     title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"
@@ -69,6 +84,8 @@ app.include_router(
     student_guidance.router, prefix="/api/student-guidance", tags=["Student Guidance"]
 )
 app.include_router(workshop.router, prefix="/api/workshops", tags=["Workshops & FDP"])
+
+app.include_router(upload.router, prefix="/api/upload", tags=["File Uploads"])
 
 
 @app.get("/")
