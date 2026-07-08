@@ -8,4 +8,8 @@ venv/
 .env
 
 # OS generated files
-.DS_Store
+.DS_Storefrontend/.next/
+frontend/node_modules/
+frontend/dist/
+frontend/.swc/
+frontend/
